@@ -1,0 +1,48 @@
+# flyctl launch added from .gitignore
+**/node_modules
+**/.pnpm-store
+**/dist
+**/build
+# packages/shared must be built (pnpm --filter @nexuskey/shared build)
+# before apps/api or apps/web dev/build -- both resolve it via its real
+# compiled dist/ output, not raw source. See README.md setup steps.
+**/.next
+**/out
+**/coverage
+
+**/.env
+**/.env.local
+**/.env.*.local
+!**/.env.example
+
+**/*.log
+**/npm-debug.log*
+**/pnpm-debug.log*
+
+**/.DS_Store
+**/.vscode
+**/.idea
+
+**/*.tsbuildinfo
+
+# GenLayer local artifacts
+**/contracts/nexuskey/.genlayer
+**/contracts/nexuskey/.venv-lint
+**/contracts/nexuskey/artifacts
+**/contracts/nexuskey/.pytest_cache
+**/contracts/nexuskey/__pycache__
+**/**/__pycache__
+**/*.pyc
+
+# Throwaway StudioNet test-signer keypairs -- generated locally for live
+# end-to-end contract testing, never real accounts, but private keys
+# still never belong in git.
+**/contracts/nexuskey/.test-signers.json
+**/contracts/nexuskey/.scratch
+
+# Fly.io
+**/fly.toml.bak
+**/.vercel
+
+# flyctl launch added from apps/web/.gitignore
+apps/web/**/.vercel

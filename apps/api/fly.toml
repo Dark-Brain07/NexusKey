@@ -1,0 +1,67 @@
+# fly.toml app configuration file generated for nexuskey-api on 2026-08-30T10:17:13+06:00
+#
+# See https://fly.io/docs/reference/configuration/ for information about how to use this file.
+#
+
+app = 'nexuskey-api'
+primary_region = 'sin'
+kill_signal = 'SIGTERM'
+kill_timeout = '10s'
+
+[build]
+  dockerfile = 'Dockerfile'
+
+[deploy]
+  strategy = 'rolling'
+  release_command = 'node apps/api/dist/db/migrate.js'
+
+[env]
+  NODE_ENV = 'production'
+  PORT = '8080'
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = 'stop'
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ['app']
+
+[[services]]
+  protocol = 'tcp'
+  internal_port = 8080
+  auto_stop_machines = 'off'
+  auto_start_machines = true
+  min_machines_running = 2
+
+  [[services.ports]]
+    port = 80
+    handlers = ['http']
+    force_https = true
+
+  [[services.ports]]
+    port = 443
+    handlers = ['tls', 'http']
+
+  [[services.tcp_checks]]
+    interval = '15s'
+    timeout = '5s'
+    grace_period = '10s'
+
+  [[services.http_checks]]
+    interval = '15s'
+    timeout = '5s'
+    grace_period = '10s'
+    method = 'get'
+    path = '/health/ready'
+    protocol = 'http'
+
+[[vm]]
+  size = 'shared-cpu-1x'
+  memory = '512mb'
+  cpus = 1
+  memory_mb = 512
+
+[[metrics]]
+  port = 9091
+  path = '/metrics'

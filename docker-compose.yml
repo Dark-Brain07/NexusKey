@@ -1,0 +1,27 @@
+# Local development database only. Production Postgres runs as a managed
+# Fly.io Postgres app (see docs/DEPLOYMENT.md) — this compose file is never
+# used in production.
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: NexusKey-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: NexusKey
+      POSTGRES_PASSWORD: NexusKey_dev_password
+      POSTGRES_DB: NexusKey
+    ports:
+      # Host port 5544, not 5432 -- avoids colliding with any pre-existing
+      # native Postgres already bound to 5432 (and 5433/5434) on the dev
+      # machine. Update DATABASE_URL to match if this ever changes.
+      - "5544:5432"
+    volumes:
+      - NexusKey_pg_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U NexusKey -d NexusKey"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  NexusKey_pg_data:
