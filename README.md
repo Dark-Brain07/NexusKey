@@ -14,7 +14,7 @@ NexusKey is **not** a rental marketplace and does not verify property
 to an owner, a property manager, an authorized agent, or an authorized
 sublessor.
 
-**Live:** [NexusKey.vercel.app](https://NexusKey.vercel.app) · API: `https://NexusKey-api.fly.dev` · Contract: GenLayer StudioNet
+**Live:** [nexus-key-web-nine.vercel.app](https://nexus-key-web-nine.vercel.app) · API: `https://NexusKey-api.fly.dev` · Contract: GenLayer StudioNet
 
 ## How it works
 
