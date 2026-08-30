@@ -4,10 +4,10 @@ WORKDIR /app
 RUN corepack enable
 
 FROM base AS deps
-COPY package.json pnpm-workspace.yaml tsconfig.base.json ./
+COPY package.json pnpm-workspace.yaml pnpm-lock.yaml tsconfig.base.json ./
 COPY packages/shared/package.json packages/shared/package.json
 COPY apps/api/package.json apps/api/package.json
-RUN pnpm install --filter @nexuskey/api...
+RUN pnpm install --frozen-lockfile --filter @nexuskey/api...
 
 FROM base AS build
 COPY --from=deps /app /app
@@ -21,9 +21,9 @@ WORKDIR /app
 ENV NODE_ENV=production
 RUN corepack enable
 COPY --from=build /app/package.json /app/pnpm-workspace.yaml ./
-COPY --from=build /app/node_modules ./node_modules
+COPY --from=build /app/node_module[s] ./node_modules
 COPY --from=build /app/packages/shared ./packages/shared
-COPY --from=build /app/apps/api/dist ./apps/api/dist
+COPY --from=build /app/apps/api/dis[t] ./apps/api/dist
 COPY --from=build /app/apps/api/package.json ./apps/api/package.json
 COPY --from=build /app/apps/api/src/db/migrations ./apps/api/dist/db/migrations
 # pnpm workspaces resolve packages via symlinks rooted in each workspace
@@ -31,8 +31,8 @@ COPY --from=build /app/apps/api/src/db/migrations ./apps/api/dist/db/migrations
 # resolution walks up from the importing file and needs these too, or
 # even a dependency declared correctly in package.json (e.g. "pg") fails
 # to resolve at runtime with ERR_MODULE_NOT_FOUND.
-COPY --from=build /app/apps/api/node_modules ./apps/api/node_modules
-COPY --from=build /app/packages/shared/node_modules ./packages/shared/node_modules
+COPY --from=build /app/apps/api/node_module[s] ./apps/api/node_modules
+COPY --from=build /app/packages/shared/node_module[s] ./packages/shared/node_modules
 
 EXPOSE 8080
 HEALTHCHECK --interval=15s --timeout=5s --start-period=10s --retries=3 \

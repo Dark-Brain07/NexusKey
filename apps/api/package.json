@@ -1,5 +1,5 @@
 {
-  "name": "@NexusKey/api",
+  "name": "@nexuskey/api",
   "version": "0.1.0",
   "private": true,
   "type": "module",
@@ -14,7 +14,7 @@
     "seed": "tsx src/db/seed.ts"
   },
   "dependencies": {
-    "@NexusKey/shared": "workspace:*",
+    "@nexuskey/shared": "workspace:*",
     "cors": "^2.8.5",
     "express": "^4.21.0",
     "express-rate-limit": "^7.4.0",
