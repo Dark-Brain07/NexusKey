@@ -33,7 +33,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={`dark ${hanken.variable} ${inter.variable} ${mono.variable}`}>
+    <html lang="en" className={`${hanken.variable} ${inter.variable} ${mono.variable}`}>
       <body className="font-body-md selection:bg-surface-tint selection:text-on-primary">
         <Providers>{children}</Providers>
       </body>
