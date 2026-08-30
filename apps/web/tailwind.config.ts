@@ -12,7 +12,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#fff9fd',
+        background: '#e0bbf4',
         surface: '#ffffff',
         'surface-dim': '#fff0f8',
         'surface-bright': '#ffffff',
