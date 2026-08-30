@@ -9,7 +9,7 @@ import {
   revokePropertyClaim,
   claimExpiredBond,
 } from '@/lib/genlayerClient';
-import type { ClaimRecord } from '@NexusKey/shared';
+import type { ClaimRecord } from '@nexuskey/shared';
 import type { Address } from 'genlayer-js/types';
 
 export type ClaimActionState = { status: 'idle' } | { status: 'pending' } | { status: 'error'; message: string };

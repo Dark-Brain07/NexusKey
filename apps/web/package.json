@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "pnpm --filter @nexuskey/shared build && next build",
     "start": "next start",
     "type-check": "tsc --noEmit -p tsconfig.json",
     "lint": "next lint",

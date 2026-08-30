@@ -5,7 +5,7 @@ import { Button } from '@/components/DesignSystem/Button';
 import { RenewClaimForm } from './RenewClaimForm';
 import { useClaimActions } from '@/lib/useClaimActions';
 import { isContractConfigured } from '@/lib/env';
-import type { ClaimRecord } from '@NexusKey/shared';
+import type { ClaimRecord } from '@nexuskey/shared';
 
 /**
  * Renders whichever actions actually apply to this claim right now --

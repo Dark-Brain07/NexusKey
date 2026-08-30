@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { pool } from '../db/pool.js';
-import { ApiError, challengeableClaimsQuerySchema } from '@NexusKey/shared';
+import { ApiError, challengeableClaimsQuerySchema } from '@nexuskey/shared';
 import { listChallengeableClaims } from '../db/queries.js';
 
 export const claimsRouter = Router();

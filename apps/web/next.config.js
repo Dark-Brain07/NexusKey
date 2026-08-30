@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  transpilePackages: ['@NexusKey/shared'],
+  transpilePackages: ['@nexuskey/shared'],
   async headers() {
     // Safe, low-risk security headers that don't restrict script/connect
     // sources -- a strict Content-Security-Policy is deliberately NOT set

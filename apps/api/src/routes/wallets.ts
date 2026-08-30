@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { walletAddressSchema } from '@NexusKey/shared';
+import { walletAddressSchema } from '@nexuskey/shared';
 import { getClaimsByWallet, getChallengesByWallet } from '../db/queries.js';
-import { ApiError } from '@NexusKey/shared';
+import { ApiError } from '@nexuskey/shared';
 
 /**
  * Public reads keyed by wallet address -- not a "/users/me" pattern

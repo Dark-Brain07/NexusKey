@@ -24,7 +24,7 @@
 import { createClient } from 'genlayer-js';
 import { studionet } from 'genlayer-js/chains';
 import { env } from '../config/env.js';
-import { claimRecordSchema, challengeRecordSchema } from '@NexusKey/shared';
+import { claimRecordSchema, challengeRecordSchema } from '@nexuskey/shared';
 import { upsertClaim, upsertChallenge, getClaimIdsNeedingSync, getChallengeIdsNeedingSync } from '../db/queries.js';
 import { tryAcquireIndexerLock, isIndexerLeader, releaseIndexerLock } from './leaderLock.js';
 

@@ -17,7 +17,7 @@ import {
   CHALLENGE_REASON_LABELS,
   PROTOCOL_DEFAULTS,
   weiStringToGen,
-} from '@NexusKey/shared';
+} from '@nexuskey/shared';
 import { isContractConfigured } from '@/lib/env';
 import {
   challengePropertyClaim,

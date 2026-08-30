@@ -6,7 +6,7 @@ import { useQueryClient } from '@tanstack/react-query';
 import { useAccount } from 'wagmi';
 import { Button } from '@/components/DesignSystem/Button';
 import { renewPropertyClaim } from '@/lib/genlayerClient';
-import { PROTOCOL_DEFAULTS, evidenceUrlSchema } from '@NexusKey/shared';
+import { PROTOCOL_DEFAULTS, evidenceUrlSchema } from '@nexuskey/shared';
 import type { Address } from 'genlayer-js/types';
 
 /**

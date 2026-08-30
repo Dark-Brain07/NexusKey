@@ -1,5 +1,5 @@
-import type { ClaimRecord, ChallengeRecord } from '@NexusKey/shared';
-import { normalizeAddress, computePropertyKey } from '@NexusKey/shared';
+import type { ClaimRecord, ChallengeRecord } from '@nexuskey/shared';
+import { normalizeAddress, computePropertyKey } from '@nexuskey/shared';
 import { pool } from './pool.js';
 
 /**

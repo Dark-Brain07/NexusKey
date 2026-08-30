@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import { pool } from '../db/pool.js';
-import { ApiError } from '@NexusKey/shared';
+import { ApiError } from '@nexuskey/shared';
 
 export const challengesRouter = Router();
 

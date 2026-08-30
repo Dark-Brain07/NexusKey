@@ -12,16 +12,16 @@
     "packages/*"
   ],
   "scripts": {
-    "build:shared": "pnpm --filter @NexusKey/shared build",
-    "dev:web": "pnpm build:shared && pnpm --filter @NexusKey/web dev",
-    "dev:api": "pnpm build:shared && pnpm --filter @NexusKey/api dev",
-    "build": "pnpm build:shared && pnpm --filter @NexusKey/api build && pnpm --filter @NexusKey/web build",
+    "build:shared": "pnpm --filter @nexuskey/shared build",
+    "dev:web": "pnpm build:shared && pnpm --filter @nexuskey/web dev",
+    "dev:api": "pnpm build:shared && pnpm --filter @nexuskey/api dev",
+    "build": "pnpm build:shared && pnpm --filter @nexuskey/api build && pnpm --filter @nexuskey/web build",
     "lint": "pnpm -r lint",
     "type-check": "pnpm -r type-check",
     "format-check": "prettier --check .",
     "format": "prettier --write .",
     "test": "pnpm -r test",
-    "test:contract": "pnpm --filter @NexusKey/api exec true && cd contracts/NexusKey && python3 -m pytest tests -v"
+    "test:contract": "pnpm --filter @nexuskey/api exec true && cd contracts/NexusKey && python3 -m pytest tests -v"
   },
   "devDependencies": {
     "prettier": "^3.3.3",

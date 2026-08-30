@@ -153,7 +153,7 @@ Prerequisites: Node 20+, `pnpm`, Docker (for local Postgres), Python 3.11+
 cp .env.example .env
 pnpm install
 docker compose up -d postgres
-pnpm --filter @NexusKey/api migrate
+pnpm --filter @nexuskey/api migrate
 pnpm dev:api
 pnpm dev:web
 ```
@@ -168,8 +168,8 @@ Three separate suites, each with its own setup:
 **Shared package + frontend** (no external services needed):
 
 ```bash
-pnpm --filter @NexusKey/shared test
-pnpm --filter @NexusKey/web test
+pnpm --filter @nexuskey/shared test
+pnpm --filter @nexuskey/web test
 ```
 
 **Backend API** — runs against an isolated `NexusKey_test` Postgres database
@@ -181,8 +181,8 @@ that database has to exist and be migrated first:
 docker compose up -d postgres
 docker exec NexusKey-postgres psql -U NexusKey -d postgres -c "CREATE DATABASE NexusKey_test;"
 DATABASE_URL=postgresql://NexusKey:NexusKey_dev_password@localhost:5544/NexusKey_test \
-  pnpm --filter @NexusKey/api migrate
-pnpm --filter @NexusKey/api test
+  pnpm --filter @nexuskey/api migrate
+pnpm --filter @nexuskey/api test
 ```
 
 The `CREATE DATABASE` step only needs to run once per local Postgres

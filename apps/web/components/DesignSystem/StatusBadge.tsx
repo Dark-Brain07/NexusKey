@@ -1,4 +1,4 @@
-import type { ClaimStatus, ChallengeStatus } from '@NexusKey/shared';
+import type { ClaimStatus, ChallengeStatus } from '@nexuskey/shared';
 
 export type DisplayStatus = ClaimStatus | ChallengeStatus | 'NOT_FOUND' | 'UNDER_REVIEW' | 'CONFLICTED';
 

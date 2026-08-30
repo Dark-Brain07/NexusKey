@@ -12,7 +12,7 @@ import {
   type ChallengeRecord,
   type ClaimSubmission,
   type ChallengeSubmission,
-} from '@NexusKey/shared';
+} from '@nexuskey/shared';
 
 /**
  * Thrown by every read/write in this module until

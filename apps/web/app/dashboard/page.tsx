@@ -13,7 +13,7 @@ import { ClaimActionButtons } from '@/components/features/claims/ClaimActionButt
 import { isContractConfigured } from '@/lib/env';
 import { getClaimIdsByWallet } from '@/lib/apiClient';
 import { getClaim } from '@/lib/genlayerClient';
-import { formatGen, type ClaimRecord } from '@NexusKey/shared';
+import { formatGen, type ClaimRecord } from '@nexuskey/shared';
 
 export default function ClaimantDashboardPage() {
   const { isConnected, address } = useAccount();

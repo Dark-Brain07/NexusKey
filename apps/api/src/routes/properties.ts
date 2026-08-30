@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { propertySearchQuerySchema } from '@NexusKey/shared';
+import { propertySearchQuerySchema } from '@nexuskey/shared';
 import { searchProperties } from '../db/queries.js';
 import { pool } from '../db/pool.js';
-import { ApiError } from '@NexusKey/shared';
+import { ApiError } from '@nexuskey/shared';
 
 export const propertiesRouter = Router();
 

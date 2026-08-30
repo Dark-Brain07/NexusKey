@@ -1,6 +1,6 @@
 import type { NextFunction, Request, Response } from 'express';
 import { ZodError } from 'zod';
-import { ApiError, API_ERROR_MESSAGES } from '@NexusKey/shared';
+import { ApiError, API_ERROR_MESSAGES } from '@nexuskey/shared';
 
 /**
  * Centralized error translation: every route handler throws either an

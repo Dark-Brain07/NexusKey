@@ -13,7 +13,7 @@ import { Button } from '@/components/DesignSystem/Button';
 import { isContractConfigured } from '@/lib/env';
 import { getChallengeIdsByWallet } from '@/lib/apiClient';
 import { getChallenge, resolvePropertyChallenge } from '@/lib/genlayerClient';
-import { CHALLENGE_REASON_LABELS, formatGen, type ChallengeReason, type ChallengeRecord } from '@NexusKey/shared';
+import { CHALLENGE_REASON_LABELS, formatGen, type ChallengeReason, type ChallengeRecord } from '@nexuskey/shared';
 import type { Address } from 'genlayer-js/types';
 
 export default function ChallengerDashboardPage() {

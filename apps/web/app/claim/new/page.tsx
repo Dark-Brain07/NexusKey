@@ -22,7 +22,7 @@ import {
   computePropertyKeyFromAddress,
   weiStringToGen,
   formatDuration,
-} from '@NexusKey/shared';
+} from '@nexuskey/shared';
 import { isContractConfigured } from '@/lib/env';
 import { filePropertyClaim, getProtocolConfiguration } from '@/lib/genlayerClient';
 import type { Address } from 'genlayer-js/types';

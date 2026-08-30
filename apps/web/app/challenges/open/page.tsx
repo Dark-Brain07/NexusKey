@@ -9,7 +9,7 @@ import { StatusBadge } from '@/components/DesignSystem/StatusBadge';
 import { MonoData } from '@/components/DesignSystem/MonoData';
 import { Pagination } from '@/components/DesignSystem/Pagination';
 import { getChallengeableClaims } from '@/lib/apiClient';
-import { AUTHORITY_TYPE_LABELS, type AuthorityType } from '@NexusKey/shared';
+import { AUTHORITY_TYPE_LABELS, type AuthorityType } from '@nexuskey/shared';
 
 /**
  * Browse-for-disputes discovery page: every claim currently open to a

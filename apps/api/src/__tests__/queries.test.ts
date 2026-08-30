@@ -1,5 +1,5 @@
 import { describe, it, expect, afterAll, beforeEach } from 'vitest';
-import type { ClaimRecord, ChallengeRecord } from '@NexusKey/shared';
+import type { ClaimRecord, ChallengeRecord } from '@nexuskey/shared';
 import { pool } from '../db/pool.js';
 import {
   upsertClaim,
