@@ -19,7 +19,7 @@ export function PropertySearchBar() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="rounded-xl p-2 transition-all duration-500 glass-panel">
+    <form onSubmit={handleSubmit} className="rounded-xl p-2 transition-all duration-500 bg-white">
       <div className="flex flex-col items-stretch gap-2 md:flex-row">
         <div className="flex flex-1 items-center gap-3 border-b border-border-subtle/50 px-4 md:border-b-0 md:border-r">
           <SearchIcon className="text-surface-tint" />
