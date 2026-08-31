@@ -4,12 +4,12 @@ type Variant = 'primary' | 'secondary' | 'danger' | 'ghost';
 
 const VARIANT_CLASSES: Record<Variant, string> = {
   primary:
-    'bg-surface-tint text-on-primary hover:brightness-110 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none',
+    'bg-surface-tint text-black hover:brightness-110 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none',
   secondary:
-    'bg-transparent border border-outline-variant text-on-surface-variant hover:text-white hover:border-white disabled:opacity-40 disabled:pointer-events-none',
+    'bg-transparent border border-outline-variant text-black hover:text-black hover:border-black disabled:opacity-40 disabled:pointer-events-none',
   danger:
     'bg-status-error text-white hover:brightness-110 active:scale-[0.98] disabled:opacity-40 disabled:pointer-events-none',
-  ghost: 'bg-transparent text-on-surface-variant hover:text-white disabled:opacity-40 disabled:pointer-events-none',
+  ghost: 'bg-transparent text-black hover:text-black/80 disabled:opacity-40 disabled:pointer-events-none',
 };
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {

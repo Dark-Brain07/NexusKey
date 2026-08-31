@@ -217,29 +217,29 @@ export default function NewClaimPage() {
 
             <div className="lg:col-span-5">
               <div className="sticky top-32 space-y-6 rounded-xl p-8 glass-panel">
-                <h3 className="text-body-lg font-headline-md font-semibold text-primary">
+                <h3 className="text-body-lg font-headline-md font-semibold text-black">
                   Bonded Registry Requirements
                 </h3>
-                <p className="text-body-sm leading-relaxed text-on-surface-variant">
+                <p className="text-body-sm leading-relaxed text-black">
                   Filing a Rental Authority Claim requires a mandatory{' '}
-                  <span className="font-mono-data text-surface-tint">GEN token bond</span>. This stake
+                  <span className="font-mono-data text-black">GEN token bond</span>. This stake
                   is a guarantee of authority, not a fee.
                 </p>
                 <div className="space-y-4 rounded-lg border border-border-subtle bg-surface-container-lowest/50 p-6">
                   <div className="flex items-center justify-between">
-                    <span className="text-label-caps font-label-caps text-on-surface-variant">
+                    <span className="text-label-caps font-label-caps text-black">
                       REQUIRED STAKE
                     </span>
                     <MonoData tone="accent">{bondGen} GEN</MonoData>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-label-caps font-label-caps text-on-surface-variant">
+                    <span className="text-label-caps font-label-caps text-black">
                       CONTEST WINDOW
                     </span>
                     <MonoData>{contestWindowLabel}</MonoData>
                   </div>
                   <div className="h-px bg-border-subtle" />
-                  <p className="text-body-sm italic text-on-surface-variant">
+                  <p className="text-body-sm italic text-black">
                     Bond remains locked for the life of a verified claim and is returned in full on
                     natural expiration or a successfully defended challenge.
                   </p>
@@ -265,8 +265,8 @@ function PropertyStep({ register, errors }: any) {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="mb-2 font-headline-lg text-headline-lg text-primary">Property Location</h1>
-        <p className="mb-10 leading-relaxed text-body-md text-on-surface-variant">
+        <h1 className="mb-2 font-headline-lg text-headline-lg text-black">Property Location</h1>
+        <p className="mb-10 leading-relaxed text-body-md text-black">
           Step 1: Define the property and unit this claim covers.
         </p>
       </div>
@@ -295,8 +295,8 @@ function ClaimantStep({ register, errors, authorityType }: any) {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="mb-2 font-headline-lg text-headline-lg text-primary">Claimant & Listing</h1>
-        <p className="mb-10 leading-relaxed text-body-md text-on-surface-variant">
+        <h1 className="mb-2 font-headline-lg text-headline-lg text-black">Claimant & Listing</h1>
+        <p className="mb-10 leading-relaxed text-body-md text-black">
           Step 2: Your legal standing and the listing you&apos;re backing.
         </p>
       </div>
@@ -306,7 +306,7 @@ function ClaimantStep({ register, errors, authorityType }: any) {
       <FieldSet label="Authority Type">
         <select
           {...register('authorityType')}
-          className="w-full border-0 border-b border-border-subtle bg-surface-container-lowest py-4 text-body-lg text-primary focus:border-surface-tint focus:outline-none"
+          className="w-full border-0 border-b border-border-subtle bg-surface-container-lowest py-4 text-body-lg text-black focus:border-surface-tint focus:outline-none"
         >
           {AUTHORITY_TYPES.map((type) => (
             <option key={type} value={type}>
@@ -314,7 +314,7 @@ function ClaimantStep({ register, errors, authorityType }: any) {
             </option>
           ))}
         </select>
-        <p className="mt-2 text-body-sm text-on-surface-variant">
+        <p className="mt-2 text-body-sm text-black">
           {AUTHORITY_TYPE_DESCRIPTIONS[authorityType as keyof typeof AUTHORITY_TYPE_DESCRIPTIONS] ?? ''}
         </p>
       </FieldSet>
@@ -325,7 +325,7 @@ function ClaimantStep({ register, errors, authorityType }: any) {
         <textarea
           {...register('listingDescription')}
           rows={4}
-          className="w-full border-0 border-b border-border-subtle bg-surface-container-lowest px-0 py-4 text-body-lg text-primary placeholder:text-on-surface-variant/30 focus:border-surface-tint focus:outline-none"
+          className="w-full border-0 border-b border-border-subtle bg-surface-container-lowest px-0 py-4 text-body-lg text-black placeholder:text-black/30 focus:border-surface-tint focus:outline-none"
           placeholder="Describe the listing…"
         />
       </FieldSet>
@@ -337,8 +337,8 @@ function EvidenceStep({ register, errors }: any) {
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="mb-2 font-headline-lg text-headline-lg text-primary">Public Evidence</h1>
-        <p className="mb-10 leading-relaxed text-body-md text-on-surface-variant">
+        <h1 className="mb-2 font-headline-lg text-headline-lg text-black">Public Evidence</h1>
+        <p className="mb-10 leading-relaxed text-body-md text-black">
           Step 3: A publicly accessible URL that substantively supports your authority — a
           property-management page, ownership record, or authorization letter.
         </p>
@@ -346,7 +346,7 @@ function EvidenceStep({ register, errors }: any) {
       <FieldSet label="Evidence URL">
         <TextInput {...register('evidenceUrl')} placeholder="https://" error={errors.evidenceUrl} />
       </FieldSet>
-      <p className="text-body-sm text-on-surface-variant">
+      <p className="text-body-sm text-black">
         Evidence must specifically connect you to this exact property and unit — not merely show
         that you operate in the same city.
       </p>
@@ -358,8 +358,8 @@ function ReviewStep({ values, propertyKey }: { values: Partial<ClaimSubmission>;
   return (
     <div className="space-y-8">
       <div>
-        <h1 className="mb-2 font-headline-lg text-headline-lg text-primary">Review & Submit</h1>
-        <p className="mb-10 leading-relaxed text-body-md text-on-surface-variant">
+        <h1 className="mb-2 font-headline-lg text-headline-lg text-black">Review & Submit</h1>
+        <p className="mb-10 leading-relaxed text-body-md text-black">
           Step 4: Confirm your claim details before posting your bond.
         </p>
       </div>
@@ -378,8 +378,8 @@ function ReviewStep({ values, propertyKey }: { values: Partial<ClaimSubmission>;
 function ReviewRow({ label, value, mono }: { label: string; value?: string; mono?: boolean }) {
   return (
     <div className="flex items-center justify-between border-b border-border-subtle pb-3 last:border-0 last:pb-0">
-      <dt className="text-label-caps font-label-caps uppercase text-on-surface-variant">{label}</dt>
-      <dd className={mono ? 'truncate pl-4 font-mono-data text-mono-data text-primary' : 'truncate pl-4 text-primary'}>
+      <dt className="text-label-caps font-label-caps uppercase text-black">{label}</dt>
+      <dd className={mono ? 'truncate pl-4 font-mono-data text-mono-data text-black' : 'truncate pl-4 text-black'}>
         {value || '—'}
       </dd>
     </div>
@@ -389,7 +389,7 @@ function ReviewRow({ label, value, mono }: { label: string; value?: string; mono
 function FieldSet({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <div className="space-y-2">
-      <label className="block text-label-caps font-label-caps uppercase tracking-widest text-on-surface-variant">
+      <label className="block text-label-caps font-label-caps uppercase tracking-widest text-black">
         {label}
       </label>
       {children}
@@ -410,7 +410,7 @@ const TextInput = forwardRef<HTMLInputElement, { error?: { message?: string } } 
       <input
         ref={ref}
         {...props}
-        className="w-full border-0 border-b border-border-subtle bg-surface-container-lowest py-4 text-body-lg text-primary placeholder:text-on-surface-variant/30 focus:border-surface-tint focus:outline-none"
+        className="w-full border-0 border-b border-border-subtle bg-surface-container-lowest py-4 text-body-lg text-black placeholder:text-black/30 focus:border-surface-tint focus:outline-none"
       />
       {error && <p className="mt-1 text-body-sm text-status-error">{error.message}</p>}
     </div>

@@ -11,10 +11,10 @@ export function Stepper({ steps, currentIndex }: { steps: Step[]; currentIndex: 
             <div
               className={`flex h-10 w-10 items-center justify-center rounded-full border font-mono-data text-mono-data ${
                 i < currentIndex
-                  ? 'border-surface-tint bg-surface-tint/10 text-surface-tint'
+                  ? 'border-surface-tint bg-surface-tint/10 text-black'
                   : i === currentIndex
-                    ? 'border-surface-tint bg-surface-tint/10 text-surface-tint'
-                    : 'border-outline-variant text-on-surface-variant opacity-40'
+                    ? 'border-surface-tint bg-surface-tint/10 text-black'
+                    : 'border-outline-variant text-black opacity-40'
               }`}
               aria-current={i === currentIndex ? 'step' : undefined}
             >
@@ -22,7 +22,7 @@ export function Stepper({ steps, currentIndex }: { steps: Step[]; currentIndex: 
             </div>
             <span
               className={`text-label-caps font-label-caps ${
-                i <= currentIndex ? 'text-surface-tint' : 'text-on-surface-variant opacity-40'
+                i <= currentIndex ? 'text-black' : 'text-black opacity-40'
               }`}
             >
               {step.label}
