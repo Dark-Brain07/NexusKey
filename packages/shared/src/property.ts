@@ -139,17 +139,11 @@ export function normalizeAddress(input: NormalizeAddressInput): NormalizedAddres
 }
 
 /**
- * Hashes the canonical string into the final property_key using SHA-256,
- * via the Web Crypto API — available in both browsers and Node >=20, so
- * the exact same function runs client-side (claim form) and server-side
- * (indexer reconciliation) without a build-time branch.
+ * Returns the canonical string directly as the final property_key.
+ * The intelligent contract will derive this exact same string on-chain.
  */
 export async function computePropertyKey(canonicalString: string): Promise<string> {
-  const encoder = new TextEncoder();
-  const data = encoder.encode(canonicalString);
-  const digest = await globalThis.crypto.subtle.digest('SHA-256', data);
-  const bytes = Array.from(new Uint8Array(digest));
-  return bytes.map((b) => b.toString(16).padStart(2, '0')).join('');
+  return canonicalString;
 }
 
 export async function computePropertyKeyFromAddress(

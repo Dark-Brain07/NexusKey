@@ -141,7 +141,7 @@ export default function NewClaimPage() {
     let claimId: string;
     let hash: `0x${string}`;
     try {
-      ({ claimId, hash } = await filePropertyClaim(provider, address as Address, propertyKey, formValues, bondGen));
+      ({ claimId, hash } = await filePropertyClaim(provider, address as Address, formValues, bondGen));
     } catch (err) {
       setTx({
         status: 'error',

@@ -42,3 +42,4 @@ contracts/nexuskey/.scratch/
 # Fly.io
 fly.toml.bak
 .vercel
+.env*.local

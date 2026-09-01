@@ -251,8 +251,8 @@ that this contract's own `.scratch/run_live_test.py` test runner mirrors.
 
 ## Post-deployment verification checklist
 
-Verified live against `0xA731B1407BFF53262742e45F1aD8dbb415736b73` on
-2026-08-22 via `contracts/NexusKey/.scratch/run_live_test.py` (real signed
+Verified live against `0xdb143aD3dfcccBaE881c6EcAf5F2a5Dd5F86AC99` on
+2026-09-01 via `contracts/NexusKey/.scratch/run_live_test.py` (real signed
 StudioNet transactions, each awaited to `FINALIZED` with `result_name`
 checked before the next was queued — see "Transaction finality" above).
 

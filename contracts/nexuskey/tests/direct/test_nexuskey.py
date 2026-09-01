@@ -46,14 +46,12 @@ ALICE = create_address("alice")   # claimant
 BOB = create_address("bob")       # a second, compatible claimant (manager)
 MALLORY = create_address("mallory")  # challenger
 
-PROPERTY_KEY = "a" * 64
-EVIDENCE_URL = "https://example.com/owner-evidence"
-CHALLENGE_URL = "https://example.com/challenge-evidence"
-
+PROPERTY_KEY = "US|NY|NEW YORK|123 MAIN STREET|4B"
+EVIDENCE_URL = "https://zillow.com/owner-evidence"
+CHALLENGE_URL = "https://zillow.com/challenge-evidence"
 
 def _evidence_response(claim_id: int, result: str) -> str:
     return json.dumps({"result": result, "reasoning": "test", "claim_id": claim_id})
-
 
 def _conflict_response(claim_id: int, result: str) -> str:
     return json.dumps({"result": result, "reasoning": "test", "claim_id": claim_id})
@@ -75,7 +73,7 @@ def file_claim(vm, c, claimant=ALICE, bond=CLAIM_BOND, evidence_url=EVIDENCE_URL
     vm.sender = claimant
     vm.value = bond
     claim_id = c.file_property_claim(
-        PROPERTY_KEY, "US", "NY", "New York", "123 Main Street", "4B",
+        "US", "NY", "New York", "123 Main Street", "4B",
         "Apex Property Mgmt", authority_type, "Cozy 2BR near downtown",
         "A lovely two bedroom apartment close to transit.", evidence_url,
     )

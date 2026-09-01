@@ -25,6 +25,27 @@ MAX_URL_LEN = 512
 MAX_CLAIMS_PER_PROPERTY_KEY = 64  # defensive bound; see docs/GENLAYER_CONTRACT.md
 MAX_NEIGHBORS_FOR_CONFLICT_JUDGEMENT = 3
 
+STREET_ABBREVIATIONS = {
+    "ST": "STREET", "STR": "STREET", "AVE": "AVENUE", "AV": "AVENUE",
+    "BLVD": "BOULEVARD", "RD": "ROAD", "DR": "DRIVE", "LN": "LANE",
+    "CT": "COURT", "PL": "PLACE", "SQ": "SQUARE", "TER": "TERRACE",
+    "PKWY": "PARKWAY", "HWY": "HIGHWAY", "CIR": "CIRCLE", "WAY": "WAY",
+    "N": "NORTH", "S": "SOUTH", "E": "EAST", "W": "WEST",
+    "NE": "NORTHEAST", "NW": "NORTHWEST", "SE": "SOUTHEAST", "SW": "SOUTHWEST",
+}
+
+UNIT_ABBREVIATIONS = ["APT", "APARTMENT", "UNIT", "STE", "SUITE", "#", "FL", "FLOOR"]
+
+ALLOWED_EVIDENCE_DOMAINS = {
+    "zillow.com",
+    "apartments.com",
+    "streeteasy.com",
+    "redfin.com",
+    "realtor.com",
+    "trulia.com",
+    "nyc.gov",
+}
+
 ERR_EXPECTED = "EXPECTED: "    # caller mistake: bad input, wrong state
 ERR_EXTERNAL = "EXTERNAL: "    # evidence source unavailable / unusable
 ERR_LLM = "LLM_ERROR: "        # model output could not be trusted
@@ -543,13 +564,31 @@ class NexusKey(gl.Contract):
             raise gl.vm.UserError(ERR_EXPECTED + f"{field_name} exceeds {max_len} characters")
         return cleaned
 
-    def _validate_property_key(self, property_key: str) -> str:
-        cleaned = property_key.strip().lower()
-        if len(cleaned) != 64 or any(c not in "0123456789abcdef" for c in cleaned):
-            raise gl.vm.UserError(
-                ERR_EXPECTED + "property_key must be a 64-character hex SHA-256 digest"
-            )
-        return cleaned
+    def _derive_property_key(self, country: str, state_or_region: str, city: str, street_address: str, unit: str) -> str:
+        def _collapse(s: str) -> str:
+            return " ".join(s.strip().replace(".", "").replace(",", "").split()).upper()
+
+        country_clean = _collapse(country)
+        state_clean = _collapse(state_or_region)
+        city_clean = _collapse(city)
+
+        street_clean = _collapse(street_address)
+        street_tokens = []
+        for t in street_clean.split():
+            street_tokens.append(STREET_ABBREVIATIONS.get(t, t))
+        street_final = " ".join(street_tokens)
+
+        unit_clean = _collapse(unit) if unit else ""
+        for pfx in UNIT_ABBREVIATIONS:
+            if unit_clean.startswith(pfx):
+                unit_clean = unit_clean[len(pfx):].strip()
+                break
+            if unit_clean.startswith(pfx + " "):
+                unit_clean = unit_clean[len(pfx) + 1:].strip()
+                break
+        unit_final = unit_clean.replace(" ", "").replace("-", "")
+
+        return f"{country_clean}|{state_clean}|{city_clean}|{street_final}|{unit_final}"
 
     def _validate_authority_type(self, authority_type: int) -> int:
         if authority_type not in AUTHORITY_NAMES:
@@ -564,6 +603,16 @@ class NexusKey(gl.Contract):
             raise gl.vm.UserError(ERR_EXPECTED + f"evidence_url exceeds {MAX_URL_LEN} characters")
         if not (cleaned.startswith("http://") or cleaned.startswith("https://")):
             raise gl.vm.UserError(ERR_EXPECTED + "evidence_url must start with http:// or https://")
+        
+        # Enforce allowlist
+        authority = cleaned.split("://", 1)[1]
+        host = authority.split("/", 1)[0].split("?", 1)[0].split("#", 1)[0].lower()
+        if host.startswith("www."):
+            host = host[4:]
+        
+        if host not in ALLOWED_EVIDENCE_DOMAINS:
+            raise gl.vm.UserError(ERR_EXPECTED + f"evidence_url domain '{host}' is not in the allowlist")
+
         self._reject_ssrf_prone_host(cleaned)
         return cleaned
 
@@ -880,7 +929,6 @@ class NexusKey(gl.Contract):
     @gl.public.write.payable
     def file_property_claim(
         self,
-        property_key: str,
         country: str,
         state_or_region: str,
         city: str,
@@ -897,12 +945,15 @@ class NexusKey(gl.Contract):
         (permissionless) so a claimant is never blocked mid-transaction on
         a slow nondet round, and so resolution can be retried if a
         consensus round is inconclusive at the infrastructure level."""
-        clean_property_key = self._validate_property_key(property_key)
         clean_country = self._validate_short_text(country, "country", 56)
         clean_state = self._validate_short_text(state_or_region, "state_or_region", 56)
         clean_city = self._validate_short_text(city, "city", 85)
         clean_street = self._validate_short_text(street_address, "street_address", 160)
         clean_unit = unit.strip()[:32]
+
+        clean_property_key = self._derive_property_key(
+            clean_country, clean_state, clean_city, clean_street, clean_unit
+        )
         clean_name = self._validate_short_text(claimant_name, "claimant_name", 120)
         clean_authority = self._validate_authority_type(authority_type)
         clean_title = self._validate_short_text(listing_title, "listing_title", 120)
@@ -1458,7 +1509,6 @@ class INexusKey:
     class Write:
         def file_property_claim(
             self,
-            property_key: str,
             country: str,
             state_or_region: str,
             city: str,

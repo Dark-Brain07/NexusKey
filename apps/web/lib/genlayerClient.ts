@@ -241,7 +241,6 @@ export async function waitForTransactionFinalization(hash: `0x${string}`): Promi
 export async function filePropertyClaim(
   provider: unknown,
   account: Address,
-  propertyKey: string,
   values: ClaimSubmission,
   bondGen: number,
 ): Promise<{ hash: `0x${string}`; claimId: string }> {
@@ -251,7 +250,6 @@ export async function filePropertyClaim(
     address,
     functionName: 'file_property_claim',
     args: [
-      propertyKey,
       values.country,
       values.stateOrRegion,
       values.city,

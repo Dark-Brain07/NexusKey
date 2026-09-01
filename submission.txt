@@ -1,0 +1,11 @@
+#### NexusKey
+
+**Title:** NexusKey: Bonded Rental Authority Registry
+**Description:**
+NexusKey is a bonded verification registry for rental authority — not ownership, not a marketplace. Claimants stake a GEN bond behind their right to advertise a property. GenLayer validators assess public evidence, and deterministic contract logic (using the GenLayer AI / Equivalence Principle) settles the outcome. Anyone can file a bonded challenge against an authority claim, using AI consensus to evaluate contradictory evidence.
+
+- **Contract Address:** `0xdb143aD3dfcccBaE881c6EcAf5F2a5Dd5F86AC99`
+- **Explorer Link:** [View on GenLayer Studio](https://explorer-studio.genlayer.com/address/0xdb143aD3dfcccBaE881c6EcAf5F2a5Dd5F86AC99)
+- **Source Code:** [Link to GitHub](https://github.com/Dark-Brain07/NexusKey)
+- **Live App:** [View on Vercel](https://nexus-key-web-nine.vercel.app/)
+- **Test in Studio:** [Import to GenLayer Studio](https://studio.genlayer.com/?import-contract=0xdb143aD3dfcccBaE881c6EcAf5F2a5Dd5F86AC99)
